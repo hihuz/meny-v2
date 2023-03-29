@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  meny-dev:
+    container_name: meny-dev
+    image: meny-dev
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    env_file: docker-compose.env
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - 9001:3000
+    volumes:
+      - ./src:/opt/meny/src
+      - ./test:/opt/meny/test
+  meny-db:
+    container_name: product-builder-service-runtime
+    image: postgres:15.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    env_file: docker-compose.env
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
