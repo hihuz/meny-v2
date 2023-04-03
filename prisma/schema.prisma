@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,67 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  AUTHOR
+  VIEWER
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  token     String
+  family    String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  name          String
+  password      String
+  recipes       Recipe[]
+  roles         Role[]
+  refreshTokens RefreshToken[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now())
+}
+
+enum Season {
+  SPRING
+  SUMMER
+  AUTUMN
+  WINTER
+  UNSPECIFIED
+}
+
+enum RecipeType {
+  STARTER
+  MAIN
+  SIDE
+  DESSERT
+  UNSPECIFIED
+}
+
+model Recipe {
+  id          Int        @id @default(autoincrement())
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  cooking     Int?
+  description String?
+  ingredients String[]
+  name        String?
+  note        String?
+  preparation Int?
+  price       Int?
+  season      Season     @default(UNSPECIFIED)
+  servings    Int?
+  steps       String[]
+  type        RecipeType @default(UNSPECIFIED)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
 }
