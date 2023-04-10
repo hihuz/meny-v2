@@ -7,7 +7,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.dev
-    env_file: docker-compose.env
+    env_file: env/development.env
     environment:
       - NODE_ENV=${NODE_ENV:-development}
     ports:
@@ -15,14 +15,12 @@ services:
     volumes:
       - ./src:/opt/meny/src
       - ./test:/opt/meny/test
+
   meny-db:
     container_name: product-builder-service-runtime
     image: postgres:15.2-alpine
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    env_file: docker-compose.env
+    env_file: env/postgres.env
     ports:
       - 5432:5432
     volumes:

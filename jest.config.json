@@ -1,0 +1,31 @@
+{
+  "moduleFileExtensions": [
+    "ts",
+    "json",
+    "js"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": "./test/.*.spec.ts$",
+  "coverageReporters": [
+    "json-summary",
+    "text",
+    "lcov"
+  ],
+  "coverageDirectory": "./coverage",
+  "collectCoverageFrom": [
+    "**/*.(t|j)s"
+  ],
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@core/(.*)$": "<rootDir>/src/core/$1",
+    "@infrastructure/(.*)$": "<rootDir>/src/infrastructure/$1",
+    "@application/(.*)$": "<rootDir>/src/application/$1",
+    "@test/(.*)$": "<rootDir>/test/$1"
+  },
+  "setupFiles": [
+    "./test/setup/exposeEnv.ts"
+  ]
+}
