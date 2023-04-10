@@ -1,6 +1,6 @@
-import { Recipe } from './recipe.entity';
+import { Recipe } from './recipe';
 import { Role } from './enums/role';
-import { RefreshToken } from './refresh-token.entity';
+import { RefreshToken } from './refresh-token';
 
 export class User {
   id: number;
