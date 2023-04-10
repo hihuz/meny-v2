@@ -1,5 +1,5 @@
-import { RecipeType } from './enums/recipe-type';
-import { Season } from './enums/season';
+import { RecipeType } from '../../common/enums/recipe-type';
+import { Season } from '../../common/enums/season';
 
 export class Recipe {
   id: number;
