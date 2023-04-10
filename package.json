@@ -62,5 +62,8 @@
     "@infrastructure": "src/infrastructure",
     "@application": "src/application",
     "@test": "test"
+  },
+  "prisma": {
+    "schema": "src/infrastructure/adapter/prisma/schema/schema.prisma"
   }
 }
