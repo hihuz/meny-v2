@@ -12,4 +12,9 @@ export class ApiConfig {
 
   public static readonly API_DESCRIPTION?: string =
     get('API_DESCRIPTION').asString();
+
+  public static readonly THROTTLER_TTL?: number = get('THROTTLER_TTL').asInt();
+
+  public static readonly THROTTLER_LIMIT?: number =
+    get('THROTTLER_TTL').asInt();
 }
