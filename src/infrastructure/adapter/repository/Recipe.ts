@@ -1,6 +1,6 @@
 import { FindOptions } from '@core/common/persistence/options';
-import { RecipeType } from '@core/domain/entities/enums/recipe-type';
-import { Season } from '@core/domain/entities/enums/season';
+import { RecipeType } from '@core/common/enums/recipe-type';
+import { Season } from '@core/common/enums/season';
 import { Recipe } from '@core/domain/entities/recipe';
 import { RecipePort } from '@core/domain/ports/Recipe';
 

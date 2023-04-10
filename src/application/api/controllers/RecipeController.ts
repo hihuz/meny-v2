@@ -1,7 +1,9 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Inject } from '@nestjs/common';
 import { Recipe } from '@core/domain/entities/recipe';
 import { RecipeUseCases } from '@core/domain/usecases/Recipe';
 import { RecipeTokens } from '@core/domain/di/tokens/Recipe';
+import { ApiResponse } from '@nestjs/swagger';
+import { RecipeList } from '../documentation/recipe/RecipeList';
 
 @Controller('recipes')
 export class RecipeController {
@@ -11,6 +13,7 @@ export class RecipeController {
   ) {}
 
   @Get()
+  @ApiResponse({ status: HttpStatus.OK, type: RecipeList })
   getRecipes(): Promise<Recipe[]> {
     return this.recipeUseCases.getList();
   }

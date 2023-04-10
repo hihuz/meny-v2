@@ -1,5 +1,5 @@
 import { Recipe } from './recipe';
-import { Role } from './enums/role';
+import { Role } from '../../common/enums/role';
 import { RefreshToken } from './refresh-token';
 
 export class User {
