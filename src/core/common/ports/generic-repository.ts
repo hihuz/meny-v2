@@ -1,5 +1,7 @@
+import { FindOptions } from '../persistence/options';
+
 export abstract class GenericRepository<T> {
-  abstract getList(): Promise<T[]>;
+  abstract getList(options?: FindOptions): Promise<T[]>;
 
   abstract get(id: string): Promise<T>;
 
