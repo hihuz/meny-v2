@@ -15,6 +15,7 @@ services:
     volumes:
       - ./src:/opt/meny/src
       - ./test:/opt/meny/test
+
   meny-db:
     container_name: product-builder-service-runtime
     image: postgres:15.2-alpine
