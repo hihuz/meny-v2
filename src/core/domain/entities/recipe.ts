@@ -1,5 +1,6 @@
 import { RecipeType } from '../../common/enums/recipe-type';
 import { Season } from '../../common/enums/season';
+import { User } from './user';
 
 export class Recipe {
   id: number;
@@ -17,4 +18,5 @@ export class Recipe {
   type: `${RecipeType}`;
   createdAt: Date;
   updatedAt: Date;
+  user: Pick<User, 'id' | 'name'>;
 }

@@ -11,14 +11,26 @@ export class RecipeRepository implements RecipePort {
   constructor(private readonly prisma: PrismaClient) {}
 
   public async getList(options?: FindOptions) {
-    const optionsWithDefaults = {
+    const commonOptionsWithDefaults = {
       take: ApiConfig.DEFAULT_PAGE_SIZE || DEFAULT_PAGE_SIZE,
       ...options,
     };
 
+    const findOptionsWithDefault = {
+      ...commonOptionsWithDefaults,
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    };
+
     const [recipes, count] = await this.prisma.$transaction([
-      this.prisma.recipe.findMany(optionsWithDefaults),
-      this.prisma.recipe.count(optionsWithDefaults),
+      this.prisma.recipe.findMany(findOptionsWithDefault),
+      this.prisma.recipe.count(commonOptionsWithDefaults),
     ]);
 
     return [recipes, count] as const;

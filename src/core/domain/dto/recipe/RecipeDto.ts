@@ -4,12 +4,23 @@ import { Recipe } from '@core/domain/entities/recipe';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
 
+class RecipeAuthorDto {
+  @ApiProperty()
+  id: number;
+
+  @ApiProperty({
+    description: "The name of the recipe's author",
+    example: 'Shackleton',
+  })
+  name: string;
+}
+
 export class RecipeDto {
   @ApiProperty()
   public id: number;
 
-  @ApiProperty()
-  public userId: number;
+  @ApiProperty({ type: RecipeAuthorDto })
+  public author: RecipeAuthorDto;
 
   @ApiProperty({
     required: false,
@@ -102,7 +113,11 @@ export class RecipeDto {
   public updatedAt: string;
 
   public static createFromRecipe(recipe: Recipe): RecipeDto {
-    const dto = plainToInstance(RecipeDto, recipe);
+    const { userId: _userId, ...recipeRest } = recipe;
+
+    const dto = plainToInstance(RecipeDto, recipeRest);
+
+    dto.author = recipe.user;
 
     return dto;
   }
