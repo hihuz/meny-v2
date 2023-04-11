@@ -1,4 +1,4 @@
 export type FindOptions = {
-  limit?: number;
-  offset?: number;
+  take?: number;
+  skip?: number;
 };

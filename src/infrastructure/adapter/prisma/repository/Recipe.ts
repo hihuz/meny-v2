@@ -8,14 +8,9 @@ export class RecipeRepository implements RecipePort {
   constructor(private readonly prisma: PrismaClient) {}
 
   public async getList(options?: FindOptions) {
-    const findOptions = {
-      skip: options?.offset,
-      take: options?.limit,
-    };
-
     const [recipes, count] = await this.prisma.$transaction([
-      this.prisma.recipe.findMany(findOptions),
-      this.prisma.recipe.count(findOptions),
+      this.prisma.recipe.findMany(options),
+      this.prisma.recipe.count(options),
     ]);
 
     return [recipes, count] as const;
