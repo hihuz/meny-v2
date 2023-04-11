@@ -4,17 +4,17 @@ import { Season } from '../../common/enums/season';
 export class Recipe {
   id: number;
   userId: number;
-  cooking?: number;
-  description?: string;
+  cooking?: number | null;
+  description?: string | null;
   ingredients: string[];
-  name?: string;
-  note?: string;
-  preparation?: number;
-  price?: number;
-  season?: Season;
-  servings?: number;
+  name?: string | null;
+  note?: string | null;
+  preparation?: number | null;
+  price?: number | null;
+  season: `${Season}`;
+  servings?: number | null;
   steps: string[];
-  type?: RecipeType;
-  createdAt: string;
-  updatedAt: string;
+  type: `${RecipeType}`;
+  createdAt: Date;
+  updatedAt: Date;
 }
