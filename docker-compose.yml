@@ -7,6 +7,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.dev
+    depends_on:
+      - meny-db
     env_file: env/development.env
     environment:
       - NODE_ENV=${NODE_ENV:-development}
@@ -17,7 +19,7 @@ services:
       - ./test:/opt/meny/test
 
   meny-db:
-    container_name: product-builder-service-runtime
+    container_name: meny-db
     image: postgres:15.2-alpine
     restart: always
     env_file: env/postgres.env
