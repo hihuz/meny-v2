@@ -17,4 +17,7 @@ export class ApiConfig {
 
   public static readonly THROTTLER_LIMIT?: number =
     get('THROTTLER_TTL').asInt();
+
+  public static readonly DEFAULT_PAGE_SIZE?: number =
+    get('DEFAULT_PAGE_SIZE').asInt();
 }
