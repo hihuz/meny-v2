@@ -3,5 +3,5 @@ import { Recipe } from '../entities/recipe';
 import { FindOptions } from '@core/common/persistence/options';
 
 export interface RecipePort extends GenericPort<Recipe> {
-  getList(options?: FindOptions): Promise<Recipe[]>;
+  getList(options?: FindOptions): Promise<readonly [Recipe[], number]>;
 }
