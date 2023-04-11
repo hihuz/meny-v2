@@ -1,4 +1,5 @@
-export type FindOptions = {
-  limit?: number;
-  offset?: number;
-};
+export interface FindOptions {
+  take?: number;
+
+  skip?: number;
+}
