@@ -8,8 +8,8 @@ import { RecipeTokens } from '@core/domain/di/tokens/Recipe';
   imports: [],
   controllers: [RecipeController],
   providers: [
-    RecipeService,
-    { provide: RecipeTokens.RecipeUseCase, useClass: RecipeRepository },
+    { provide: RecipeTokens.RecipePort, useClass: RecipeRepository },
+    { provide: RecipeTokens.RecipeUseCase, useClass: RecipeService },
   ],
 })
 export class RecipeModule {}

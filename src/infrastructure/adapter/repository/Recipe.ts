@@ -3,7 +3,9 @@ import { RecipeType } from '@core/common/enums/recipe-type';
 import { Season } from '@core/common/enums/season';
 import { Recipe } from '@core/domain/entities/recipe';
 import { RecipePort } from '@core/domain/ports/Recipe';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class RecipeRepository implements RecipePort {
   public async getList(options?: FindOptions): Promise<Recipe[]> {
     // TODO: Fetch from db once it has been properly setup and data has been imported
