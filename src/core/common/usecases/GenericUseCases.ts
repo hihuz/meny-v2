@@ -1,7 +1,8 @@
+import { List } from '../dto/List';
 import { FindOptions } from '../persistence/options';
 
 export interface GenericUseCases<T> {
-  getList?(options?: FindOptions): Promise<T[]>;
+  getList?(options?: FindOptions): Promise<List<T>>;
 
   get?(id: string): Promise<T>;
 

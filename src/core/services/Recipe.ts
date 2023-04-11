@@ -1,6 +1,7 @@
 import { FindOptions } from '@core/common/persistence/options';
 import { RecipeTokens } from '@core/domain/di/tokens/Recipe';
-import { Recipe } from '@core/domain/entities/recipe';
+import { RecipeDto } from '@core/domain/dto/recipe/RecipeDto';
+import { RecipeDtoList } from '@core/domain/dto/recipe/RecipeDtoList';
 import { RecipePort } from '@core/domain/ports/Recipe';
 import { RecipeUseCases } from '@core/domain/usecases/Recipe';
 import { Inject, Injectable } from '@nestjs/common';
@@ -12,9 +13,12 @@ export class RecipeService implements RecipeUseCases {
     private readonly recipePort: RecipePort,
   ) {}
 
-  public async getList(options?: FindOptions): Promise<Recipe[]> {
-    const recipes = await this.recipePort.getList(options);
+  public async getList(options?: FindOptions): Promise<RecipeDtoList> {
+    const [recipes, count] = await this.recipePort.getList(options);
 
-    return recipes;
+    return {
+      data: RecipeDto.createListFromRecipes(recipes),
+      count,
+    };
   }
 }
