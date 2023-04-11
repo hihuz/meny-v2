@@ -1,7 +1,7 @@
 import { FindOptions } from '@core/common/persistence/options';
 import { RecipePort } from '@core/domain/ports/Recipe';
 import { Injectable } from '@nestjs/common';
-import { PrismaClient } from '../prisma/client/PrismaClient';
+import { PrismaClient } from '../client/PrismaClient';
 
 @Injectable()
 export class RecipeRepository implements RecipePort {
