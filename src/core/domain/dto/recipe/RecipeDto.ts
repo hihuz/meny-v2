@@ -113,11 +113,14 @@ export class RecipeDto {
   public updatedAt: string;
 
   public static createFromRecipe(recipe: Recipe): RecipeDto {
-    const { userId: _userId, ...recipeRest } = recipe;
+    const { userId: _userId, user, ...recipeRest } = recipe;
 
     const dto = plainToInstance(RecipeDto, recipeRest);
 
-    dto.author = recipe.user;
+    dto.author = user;
+
+    dto.createdAt = recipe.createdAt.toISOString();
+    dto.updatedAt = recipe.updatedAt.toISOString();
 
     return dto;
   }

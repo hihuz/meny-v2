@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  test-db:
+    container_name: test-db
+    image: postgres:15.2-alpine
+    restart: always
+    env_file: env/postgres.env
+    ports:
+      - 5433:5432
+    volumes:
+      - test-db:/var/lib/postgresql/data
+
+volumes:
+  test-db:
+    driver: local
