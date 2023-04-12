@@ -1,4 +1,4 @@
-import { FindOptions } from '@core/common/persistence/options';
+import { ListOptions } from '@core/common/persistence/ListOptions';
 import { RecipeTokens } from '@core/domain/di/tokens/Recipe';
 import { RecipeDto } from '@core/domain/dto/recipe/RecipeDto';
 import { RecipeDtoList } from '@core/domain/dto/recipe/RecipeDtoList';
@@ -13,7 +13,7 @@ export class RecipeService implements RecipeUseCases {
     private readonly recipePort: RecipePort,
   ) {}
 
-  public async getList(options?: FindOptions): Promise<RecipeDtoList> {
+  public async getList(options?: ListOptions): Promise<RecipeDtoList> {
     const [recipes, count] = await this.recipePort.getList(options);
 
     return {

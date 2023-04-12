@@ -5,7 +5,7 @@ import { UserFixture } from '../fixtures/UserFixture';
 import { RecipeFixture } from '../fixtures/RecipeFixture';
 import { clearDb } from '@test/utils/clearDb';
 import { RecipeDto } from '@core/domain/dto/recipe/RecipeDto';
-import { Recipe } from '@core/domain/entities/recipe';
+import { Recipe } from '@core/domain/entities/Recipe';
 import { instanceToPlain } from 'class-transformer';
 
 describe('Recipes', () => {

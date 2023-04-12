@@ -1,6 +1,6 @@
-import { RecipeType } from '@core/common/enums/recipe-type';
-import { Season } from '@core/common/enums/season';
-import { Recipe } from '@core/domain/entities/recipe';
+import { RecipeType } from '@core/common/enums/RecipeType';
+import { Season } from '@core/common/enums/Season';
+import { Recipe } from '@core/domain/entities/Recipe';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
 

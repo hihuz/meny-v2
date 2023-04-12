@@ -1,6 +1,6 @@
-import { RecipeType } from '../../common/enums/recipe-type';
-import { Season } from '../../common/enums/season';
-import { User } from './user';
+import { RecipeType } from '../../common/enums/RecipeType';
+import { Season } from '../../common/enums/Season';
+import { User } from './User';
 
 export class Recipe {
   id: number;

@@ -1,7 +1,7 @@
-import { FindOptions } from '../persistence/options';
+import { ListOptions } from '../persistence/ListOptions';
 
 export interface GenericPort<T> {
-  getList?(options?: FindOptions): Promise<readonly [T[], number]>;
+  getList?(options?: ListOptions): Promise<readonly [T[], number]>;
 
   get?(id: string): Promise<T>;
 
