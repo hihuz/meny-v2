@@ -1,7 +1,7 @@
-import { FindOptions } from '../persistence/options';
+import { ListOptions } from '../persistence/ListOptions';
 import { IsNumber, IsOptional } from 'class-validator';
 
-export class ListOptionsQueryDto implements FindOptions {
+export class ListOptionsQueryDto implements ListOptions {
   @IsOptional()
   @IsNumber()
   public take?: number;

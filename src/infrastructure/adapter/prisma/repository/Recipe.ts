@@ -1,9 +1,9 @@
-import { FindOptions } from '@core/common/persistence/options';
+import { ListOptions } from '@core/common/persistence/ListOptions';
 import { RecipePort } from '@core/domain/ports/Recipe';
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '../client/PrismaClient';
 import { ApiConfig } from '@infrastructure/config/Api';
-import { Recipe } from '@core/domain/entities/recipe';
+import { Recipe } from '@core/domain/entities/Recipe';
 
 const DEFAULT_PAGE_SIZE = 50;
 
@@ -12,7 +12,7 @@ export class RecipeRepository implements RecipePort {
   constructor(private readonly prisma: PrismaClient) {}
 
   public async getList(
-    options?: FindOptions,
+    options?: ListOptions,
   ): Promise<readonly [Recipe[], number]> {
     const commonOptionsWithDefaults = {
       take: ApiConfig.DEFAULT_PAGE_SIZE || DEFAULT_PAGE_SIZE,

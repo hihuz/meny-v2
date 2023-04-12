@@ -1,8 +1,8 @@
 import { GenericUseCases } from '@core/common/usecases/GenericUseCases';
-import { FindOptions } from '@core/common/persistence/options';
+import { ListOptions } from '@core/common/persistence/ListOptions';
 import { RecipeDtoList } from '../dto/recipe/RecipeDtoList';
 import { RecipeDto } from '../dto/recipe/RecipeDto';
 
 export interface RecipeUseCases extends GenericUseCases<RecipeDto> {
-  getList(options?: FindOptions): Promise<RecipeDtoList>;
+  getList(options?: ListOptions): Promise<RecipeDtoList>;
 }
