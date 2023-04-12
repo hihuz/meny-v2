@@ -26,6 +26,6 @@
     "@test/(.*)$": "<rootDir>/test/$1"
   },
   "setupFiles": [
-    "./test/setup/exposeEnv.ts"
+    "./test/setup/setup.ts"
   ]
 }
