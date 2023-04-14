@@ -7,6 +7,7 @@ import { clearDb } from '@test/utils/clearDb';
 import { RecipeDto } from '@core/domain/dto/recipe/RecipeDto';
 import { Recipe } from '@core/domain/entities/Recipe';
 import { instanceToPlain } from 'class-transformer';
+import { orderItems } from '@test/utils/orderItems';
 
 describe('Recipes', () => {
   let testServer: TestServer;
@@ -38,11 +39,15 @@ describe('Recipes', () => {
     });
 
     it('should return a list of recipes', () => {
+      const data = instanceToPlain<RecipeDto[]>(
+        RecipeDto.createListFromRecipes(recipes),
+      ) as RecipeDto[];
+
       return supertest(testServer.serverApplication.getHttpServer())
         .get('/recipes')
         .expect(200)
         .expect({
-          data: instanceToPlain(RecipeDto.createListFromRecipes(recipes)),
+          data: orderItems(data),
           count: 2,
         });
     });
