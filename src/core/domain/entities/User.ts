@@ -7,9 +7,9 @@ export class User {
   email: string;
   name: string;
   password: string;
-  recipes: Recipe[];
-  roles: Role[];
-  refreshTokens: RefreshToken[];
-  createdAt: string;
-  updatedAt: string;
+  recipes?: Recipe[];
+  roles: `${Role}`[];
+  refreshTokens?: RefreshToken[];
+  createdAt: Date;
+  updatedAt: Date;
 }
