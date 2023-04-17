@@ -14,8 +14,9 @@
   ],
   "coverageDirectory": "./coverage",
   "collectCoverageFrom": [
-    "**/*.(t|j)s"
+    "src/**/*.(t|j)s"
   ],
+
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
