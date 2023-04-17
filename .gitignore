@@ -38,3 +38,4 @@ lerna-debug.log*
 env/development.env
 env/test.env
 env/postgres.env
+env/docker-compose.env
