@@ -7,7 +7,7 @@ import { instanceToPlain } from 'class-transformer';
 import { User } from '@core/domain/entities/User';
 import { UserDto } from '@core/domain/dto/user/UserDto';
 
-describe('Recipes', () => {
+describe('Users', () => {
   let testServer: TestServer;
   let userFixture: UserFixture;
 

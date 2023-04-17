@@ -15,7 +15,6 @@ export class UserService implements UserUseCases {
   async get(id: number): Promise<UserDto> {
     const user = CoreAssert.notEmpty(
       await this.userPort.get(id),
-      // TODO: create more abstract exception class and use nest's exception filter
       new NotFoundException(),
     );
 
