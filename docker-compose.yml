@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile.dev
     depends_on:
       - meny-db
-    env_file: env/development.env
+    env_file: env/docker-compose.env
     environment:
       - NODE_ENV=${NODE_ENV:-development}
     ports:
