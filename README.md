@@ -8,5 +8,5 @@ This is a work in progress and for now the application is not yet functional, on
 
 ### Technologies
 
-Backend: Node.js, Nestjs, Postgres
-Frontend: TBD, probably React with Next
+- Backend: Node.js, Nestjs, Postgres
+- Frontend: TBD, probably React with Next
