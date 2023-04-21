@@ -39,8 +39,8 @@ describe('Users', () => {
       });
     });
 
-    it('should return only exposed user fields', () => {
-      return supertest(testServer.serverApplication.getHttpServer())
+    it('should return only exposed user fields', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
         .get(`/users/${user.id}`)
         .expect(200)
         .expect((response) => {
@@ -54,14 +54,14 @@ describe('Users', () => {
         });
     });
 
-    it('should return a 404 error if user does not exist', () => {
-      return supertest(testServer.serverApplication.getHttpServer())
+    it('should return a 404 error if user does not exist', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
         .get(`/users/9999`)
         .expect(404);
     });
 
-    it('should return a 400 error if id is invalid', () => {
-      return supertest(testServer.serverApplication.getHttpServer())
+    it('should return a 400 error if id is invalid', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
         .get(`/users/abcd`)
         .expect(400);
     });

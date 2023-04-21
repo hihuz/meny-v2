@@ -38,12 +38,12 @@ describe('Recipes', () => {
       recipes = await recipeFixture.insertMany([{}, {}]);
     });
 
-    it('should return a list of recipes', () => {
+    it('should return a list of recipes', async () => {
       const data = instanceToPlain<RecipeDto[]>(
         RecipeDto.createListFromRecipes(recipes),
       ) as RecipeDto[];
 
-      return supertest(testServer.serverApplication.getHttpServer())
+      await supertest(testServer.serverApplication.getHttpServer())
         .get('/recipes')
         .expect(200)
         .expect({
