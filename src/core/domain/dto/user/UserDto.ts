@@ -29,16 +29,23 @@ export class UserDto {
   @ApiProperty()
   public updatedAt: string;
 
-  public static createFromUser(user: User): UserDto {
+  public static createFromUser(
+    user: User,
+    options: { include?: Omit<keyof User, 'password'>[] } = {},
+  ): UserDto {
     const dto = plainToInstance(UserDto, user);
 
     dto.createdAt = user.createdAt.toISOString();
     dto.updatedAt = user.updatedAt.toISOString();
 
+    if (options?.include?.includes('email')) {
+      dto.email = user.email;
+    }
+
     return dto;
   }
 
   public static createListFromUsers(users: User[]): UserDto[] {
-    return users.map(this.createFromUser);
+    return users.map((user) => this.createFromUser(user));
   }
 }

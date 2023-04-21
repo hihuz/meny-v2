@@ -5,7 +5,7 @@ export interface GenericPort<T> {
 
   get?(id: number): Promise<T | null>;
 
-  create?(item: T): Promise<T>;
+  create?(item: Partial<T>): Promise<T>;
 
   update?(id: number, item: T): Promise<T>;
 
