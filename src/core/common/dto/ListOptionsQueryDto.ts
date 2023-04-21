@@ -1,4 +1,4 @@
-import { ListOptions } from '../persistence/ListOptions';
+import { ListOptions } from './ListOptions';
 import { IsNumber, IsOptional } from 'class-validator';
 
 export class ListOptionsQueryDto implements ListOptions {

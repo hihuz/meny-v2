@@ -1,9 +1,9 @@
 import { ListOptions } from '../persistence/ListOptions';
 
 export interface GenericPort<T> {
-  getList?(options?: ListOptions): Promise<readonly [T[], number]>;
+  getList?(options?: ListOptions<T>): Promise<readonly [T[], number]>;
 
-  get?(id: number): Promise<T | null>;
+  get?(options: Partial<Pick<T, keyof T>>): Promise<T | null>;
 
   create?(item: Partial<T>): Promise<T>;
 

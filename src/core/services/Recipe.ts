@@ -1,4 +1,4 @@
-import { ListOptions } from '@core/common/persistence/ListOptions';
+import { ListOptions } from '@core/common/dto/ListOptions';
 import { RecipeTokens } from '@core/domain/di/tokens/Recipe';
 import { RecipeDto } from '@core/domain/dto/recipe/RecipeDto';
 import { RecipeDtoList } from '@core/domain/dto/recipe/RecipeDtoList';

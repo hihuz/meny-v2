@@ -12,7 +12,7 @@ export class RecipeRepository implements RecipePort {
   constructor(private readonly prisma: PrismaClient) {}
 
   public async getList(
-    options?: ListOptions,
+    options?: ListOptions<Recipe>,
   ): Promise<readonly [Recipe[], number]> {
     const commonOptionsWithDefaults = {
       take: ApiConfig.DEFAULT_PAGE_SIZE || DEFAULT_PAGE_SIZE,

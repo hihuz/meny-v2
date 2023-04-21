@@ -1,5 +1,5 @@
 import { GenericUseCases } from '@core/common/usecases/GenericUseCases';
-import { ListOptions } from '@core/common/persistence/ListOptions';
+import { ListOptions } from '@core/common/dto/ListOptions';
 import { RecipeDtoList } from '../dto/recipe/RecipeDtoList';
 import { RecipeDto } from '../dto/recipe/RecipeDto';
 
