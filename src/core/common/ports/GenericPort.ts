@@ -1,4 +1,5 @@
 import { ListOptions } from '../persistence/ListOptions';
+import { DeleteManyOptions } from '../persistence/DeleteManyOptions';
 
 export interface GenericPort<T> {
   getList?(options?: ListOptions<T>): Promise<readonly [T[], number]>;
@@ -10,4 +11,6 @@ export interface GenericPort<T> {
   update?(id: number, item: T): Promise<T>;
 
   delete?(id: number): Promise<T>;
+
+  deleteMany?(options?: DeleteManyOptions<T>): Promise<number>;
 }
