@@ -14,7 +14,7 @@ describe('Users', () => {
   beforeAll(async () => {
     testServer = await TestServer.create();
 
-    userFixture = UserFixture.create(prismaClient);
+    userFixture = UserFixture.create(testServer.testingModule);
 
     await testServer.serverApplication.init();
   });

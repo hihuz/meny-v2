@@ -17,7 +17,7 @@ describe('Recipes', () => {
   beforeAll(async () => {
     testServer = await TestServer.create();
 
-    userFixture = UserFixture.create(prismaClient);
+    userFixture = UserFixture.create(testServer.testingModule);
     recipeFixture = RecipeFixture.create(prismaClient, userFixture);
 
     await testServer.serverApplication.init();
