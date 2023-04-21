@@ -4,12 +4,14 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { UserModule } from './UserModule';
+import { AuthModule } from './AuthModule';
 
 const DEFAULT_THROTTLER_TTL = 600; // 10 minutes
 const DEFAULT_THROTTLER_LIMIT = 200;
 
 @Module({
   imports: [
+    AuthModule,
     RecipeModule,
     UserModule,
     ThrottlerModule.forRoot({
