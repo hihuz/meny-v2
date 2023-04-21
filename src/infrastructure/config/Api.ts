@@ -20,4 +20,6 @@ export class ApiConfig {
 
   public static readonly DEFAULT_PAGE_SIZE?: number =
     get('DEFAULT_PAGE_SIZE').asInt();
+
+  public static readonly SALT_ROUNDS?: number = get('SALT_ROUNDS').asInt();
 }

@@ -6,7 +6,7 @@ export interface GenericUseCases<T> {
 
   get?(id: number): Promise<T>;
 
-  create?(item: T): Promise<T>;
+  create?(item: Partial<T>): Promise<T>;
 
   update?(id: number, item: T): Promise<T>;
 

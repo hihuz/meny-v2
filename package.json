@@ -16,17 +16,19 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "dotenv -e env/test.env ./scripts/setup-tests.sh && jest",
-    "test:watch": "dotenv -e env/test.env ./scripts/setup-tests.sh && jest --watch",
-    "test:cov": "dotenv -e env/test.env ./scripts/setup-tests.sh && jest --coverage"
+    "test": "dotenv -e env/test.env ./scripts/setup-tests.sh && jest --runInBand",
+    "test:watch": "dotenv -e env/test.env ./scripts/setup-tests.sh && jest --watch --runInBand",
+    "test:cov": "dotenv -e env/test.env ./scripts/setup-tests.sh && jest --coverage --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/jwt": "^10.0.3",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.3.0",
     "@nestjs/throttler": "^4.0.0",
     "@prisma/client": "^4.12.0",
+    "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "env-var": "^7.3.0",
@@ -39,6 +41,7 @@
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "29.2.4",
     "@types/node": "18.11.18",
@@ -61,7 +64,7 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.1",
-    "typescript": "^4.7.4"
+    "typescript": "^5.0.4"
   },
   "_moduleAliases": {
     "@root": ".",

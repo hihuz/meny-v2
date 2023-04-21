@@ -6,7 +6,6 @@ import { RecipeTokens } from '@core/domain/di/tokens/Recipe';
 import { PrismaClient } from '@infrastructure/adapter/prisma/client/PrismaClient';
 
 @Module({
-  imports: [],
   controllers: [RecipeController],
   providers: [
     PrismaClient,
