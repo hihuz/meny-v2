@@ -37,16 +37,16 @@ export class UserService implements UserUseCases {
   async create(payload: CreateUserDto): Promise<UserDto> {
     const email = payload.email.toLowerCase();
 
-    const password = await hash(
-      payload.password,
-      ApiConfig.SALT_ROUNDS || DEFAULT_SALT_ROUNDS,
-    );
-
     const matchingUser = await this.userPort.get({ email });
 
     if (matchingUser) {
       throw new ConflictException('User already exists');
     }
+
+    const password = await hash(
+      payload.password,
+      ApiConfig.SALT_ROUNDS || DEFAULT_SALT_ROUNDS,
+    );
 
     const user = await this.userPort.create({
       email,
