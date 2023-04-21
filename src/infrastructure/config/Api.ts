@@ -4,6 +4,26 @@ export class ApiConfig {
   // The name of this variable *must* be 'PORT' as long as we use Scalingo for hosting
   public static readonly PORT: number = get('PORT').required().asPortNumber();
 
+  public static readonly ACCESS_TOKEN_SECRET: string = get(
+    'ACCESS_TOKEN_SECRET',
+  )
+    .required()
+    .asString();
+
+  public static readonly REFRESH_TOKEN_SECRET: string = get(
+    'REFRESH_TOKEN_SECRET',
+  )
+    .required()
+    .asString();
+
+  public static readonly ACCESS_TOKEN_TTL: number = get('ACCESS_TOKEN_TTL')
+    .required()
+    .asInt();
+
+  public static readonly REFRESH_TOKEN_TTL: number = get('REFRESH_TOKEN_TTL')
+    .required()
+    .asInt();
+
   public static readonly API_VERSION: string = get('API_VERSION')
     .required()
     .asString();
