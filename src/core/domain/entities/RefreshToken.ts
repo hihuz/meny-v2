@@ -3,6 +3,6 @@ export class RefreshToken {
   userId: number;
   jti: string;
   family: string;
-  expiresAt: string;
-  createdAt: string;
+  expiresAt: Date;
+  createdAt: Date;
 }

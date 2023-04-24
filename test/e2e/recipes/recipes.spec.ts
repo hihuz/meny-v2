@@ -1,6 +1,6 @@
 import * as supertest from 'supertest';
 import { TestServer } from '@test/utils/TestServer';
-import { prismaClient } from '@test/utils/prismaClient';
+import { prisma } from '@test/utils/prismaClient';
 import { UserFixture } from '../fixtures/UserFixture';
 import { RecipeFixture } from '../fixtures/RecipeFixture';
 import { clearDb } from '@test/utils/clearDb';
@@ -17,8 +17,8 @@ describe('Recipes', () => {
   beforeAll(async () => {
     testServer = await TestServer.create();
 
-    userFixture = UserFixture.create(prismaClient);
-    recipeFixture = RecipeFixture.create(prismaClient, userFixture);
+    userFixture = UserFixture.create(testServer.testingModule);
+    recipeFixture = RecipeFixture.create(prisma, userFixture);
 
     await testServer.serverApplication.init();
   });

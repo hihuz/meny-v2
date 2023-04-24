@@ -1,6 +1,6 @@
 import * as supertest from 'supertest';
 import { TestServer } from '@test/utils/TestServer';
-import { prismaClient } from '@test/utils/prismaClient';
+import { prisma } from '@test/utils/prismaClient';
 import { UserFixture } from '../fixtures/UserFixture';
 import { clearDb } from '@test/utils/clearDb';
 import { instanceToPlain } from 'class-transformer';
@@ -14,7 +14,7 @@ describe('Users', () => {
   beforeAll(async () => {
     testServer = await TestServer.create();
 
-    userFixture = UserFixture.create(prismaClient);
+    userFixture = UserFixture.create(testServer.testingModule);
 
     await testServer.serverApplication.init();
   });
@@ -129,7 +129,7 @@ describe('Users', () => {
           });
         });
 
-      const user = await prismaClient.user.findFirst({ where: { email } });
+      const user = await prisma.user.findFirst({ where: { email } });
 
       expect(user).toMatchObject({ email, name, roles: ['AUTHOR'] });
     });
@@ -153,7 +153,7 @@ describe('Users', () => {
           });
         });
 
-      const user = await prismaClient.user.findFirst({ where: { email } });
+      const user = await prisma.user.findFirst({ where: { email } });
 
       expect(user).toMatchObject({ email, name: email, roles: ['AUTHOR'] });
     });
