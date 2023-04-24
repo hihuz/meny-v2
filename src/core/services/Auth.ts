@@ -34,6 +34,17 @@ export class AuthService implements AuthUseCases {
     private readonly logger: Logger,
   ) {}
 
+  /**
+   * Invalidate a family of refresh tokens if reuse has been detected.
+   *
+   * If another valid token from the same family exists, the family is
+   * considered to be compromised and we invalidate all corresponding tokens.
+   *
+   * The user will then have to login again.
+   *
+   * @see https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation#automatic-reuse-detection
+   * @param refreshToken the payload of the refresh token that is no longer valid
+   */
   private async removeRefreshTokenFamilyIfApplicable(
     refreshToken: RefreshTokenPayload,
   ) {
@@ -154,6 +165,15 @@ export class AuthService implements AuthUseCases {
     throw new UnauthorizedException('Invalid email or password');
   }
 
+  /**
+   * Use a refresh token to generate a new access_token / refresh_token pair.
+   *
+   * It includes a refresh token rotation mechanism: a refresh token can only
+   * be used once to generate new tokens, and is invalidated in the process.
+   *
+   * @param refreshToken the refresh token to use to generate a new set of tokens
+   * @returns a new set of tokens
+   */
   public async refreshTokens(refreshToken: string) {
     let payload: RefreshTokenPayload;
 
