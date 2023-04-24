@@ -1,4 +1,4 @@
-import { prismaClient as prisma } from './prismaClient';
+import { prisma } from './prismaClient';
 
 export const clearDb = async () => {
   await prisma.$transaction([
