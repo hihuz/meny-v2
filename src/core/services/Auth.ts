@@ -155,10 +155,16 @@ export class AuthService implements AuthUseCases {
   }
 
   public async refreshTokens(refreshToken: string) {
-    const payload = await this.jwtService.verifyAsync<RefreshTokenPayload>(
-      refreshToken,
-      AuthConfig.refreshToken,
-    );
+    let payload: RefreshTokenPayload;
+
+    try {
+      payload = await this.jwtService.verifyAsync<RefreshTokenPayload>(
+        refreshToken,
+        AuthConfig.refreshToken,
+      );
+    } catch (error) {
+      throw new UnauthorizedException('Invalid Refresh Token');
+    }
 
     await this.validateRefreshToken(payload);
 
