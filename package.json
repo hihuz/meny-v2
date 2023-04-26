@@ -15,6 +15,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:cov": "turbo run test:cov",
+    "start:prod": "turbo run start:prod",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
@@ -26,5 +27,5 @@
     "npm": ">=8.0.0",
     "node": ">=16.0.0"
   },
-  "packageManager": "npm@8.15.0"
+  "packageManager": "npm@9.5.1"
 }

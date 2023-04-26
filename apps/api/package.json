@@ -77,6 +77,10 @@
     "@application": "src/application",
     "@test": "test"
   },
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
   "prisma": {
     "schema": "src/infrastructure/adapter/prisma/schema/schema.prisma"
   }
