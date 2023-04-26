@@ -1,4 +1,4 @@
-### Meny v2
+## Meny v2
 
 This repository contains the code for Meny, a recipe sharing web application.
 
@@ -8,5 +8,11 @@ This is a work in progress and for now the application is not yet functional, on
 
 ### Technologies
 
-- Backend: Node.js, Nestjs, Postgres
-- Frontend: TBD, probably React with Next
+Node.js, Nestjs, Prisma, Postgres, React, Next, Turborepo
+
+### Development
+
+* Install dependencies: `npm install`
+* Create env files: `cp apps/api/env/development.example.env apps/api/env/development.env` (repeat for all env files)
+* Spin up the postgres db: `docker-compose up meny-db` (optionally with `-d`)
+* Start the dev environment: `npm run dev`
