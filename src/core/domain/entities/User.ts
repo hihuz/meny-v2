@@ -13,3 +13,5 @@ export class User {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type ContextUser = Pick<User, 'id' | 'email' | 'roles' | 'name'>;

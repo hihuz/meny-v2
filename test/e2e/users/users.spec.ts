@@ -82,7 +82,6 @@ describe('Users', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/users`)
-        .set('Content-Type', 'application/json')
         .send({
           email: 'JoHn@SmItH.CoM',
           password: 'temporary',
@@ -102,11 +101,21 @@ describe('Users', () => {
 
         await supertest(testServer.serverApplication.getHttpServer())
           .post(`/users`)
-          .set('Content-Type', 'application/json')
           .send(payload)
           .expect(400);
       },
     );
+
+    it('should not accept extra properties in request body', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
+        .post(`/users`)
+        .send({
+          email: 'jean.dupont@email.com',
+          password: 'temporary',
+          roles: ['ADMIN'],
+        })
+        .expect(400);
+    });
 
     it('should properly create a new user', async () => {
       const email = 'jean.dupont@email.com';
@@ -114,7 +123,6 @@ describe('Users', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/users`)
-        .set('Content-Type', 'application/json')
         .send({
           email,
           password: 'temporary',
@@ -139,7 +147,6 @@ describe('Users', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/users`)
-        .set('Content-Type', 'application/json')
         .send({
           email,
           password: 'temporary',

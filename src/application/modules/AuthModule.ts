@@ -10,7 +10,11 @@ import { PrismaClient } from '@infrastructure/adapter/prisma/client/PrismaClient
 import { AuthTokens } from '@core/domain/di/tokens/Auth';
 
 @Module({
-  imports: [JwtModule.register({})],
+  imports: [
+    JwtModule.register({
+      global: true,
+    }),
+  ],
   providers: [
     Logger,
     PrismaClient,

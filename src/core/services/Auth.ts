@@ -84,7 +84,7 @@ export class AuthService implements AuthUseCases {
     return user.roles;
   }
 
-  private async generateAccessToken(payload: {
+  private async createAccessToken(payload: {
     sub: number;
     roles: `${Role}`[];
   }): Promise<string> {
@@ -190,7 +190,7 @@ export class AuthService implements AuthUseCases {
 
     const roles = await this.getUserRoles(payload.sub);
 
-    const accessToken = await this.generateAccessToken({
+    const accessToken = await this.createAccessToken({
       sub: payload.sub,
       roles,
     });
@@ -209,7 +209,7 @@ export class AuthService implements AuthUseCases {
 
     const payload = { sub: user.id, roles: user.roles };
 
-    const accessToken = await this.generateAccessToken(payload);
+    const accessToken = await this.createAccessToken(payload);
 
     const refreshToken = await this.createRefreshToken({ sub: payload.sub });
 
