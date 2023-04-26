@@ -106,6 +106,17 @@ describe('Users', () => {
       },
     );
 
+    it('should not accept extra properties in request body', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
+        .post(`/users`)
+        .send({
+          email: 'jean.dupont@email.com',
+          password: 'temporary',
+          roles: ['ADMIN'],
+        })
+        .expect(400);
+    });
+
     it('should properly create a new user', async () => {
       const email = 'jean.dupont@email.com';
       const name = 'super-dupont';

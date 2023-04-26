@@ -7,4 +7,13 @@ export class PipeConfig {
       enableImplicitConversion: true,
     },
   };
+
+  public static readonly bodyValidation = {
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: {
+      enableImplicitConversion: true,
+    },
+  };
 }

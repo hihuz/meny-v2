@@ -14,6 +14,7 @@ import { UserTokens } from '@core/domain/di/tokens/User';
 import { UserUseCases } from '@core/domain/usecases/User';
 import { UserDto } from '@core/domain/dto/user/UserDto';
 import { CreateUserDto } from '@core/domain/dto/user/CreateUserDto';
+import { PipeConfig } from './config/Pipe';
 
 @Controller('users')
 export class UserController {
@@ -31,7 +32,8 @@ export class UserController {
   @Post()
   @ApiResponse({ status: HttpStatus.CREATED, type: UserDto })
   createUser(
-    @Body(new ValidationPipe()) { email, password, name }: CreateUserDto,
+    @Body(new ValidationPipe(PipeConfig.bodyValidation))
+    { email, password, name }: CreateUserDto,
   ) {
     return this.userUseCases.create({ email, password, name });
   }
