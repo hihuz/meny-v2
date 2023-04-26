@@ -15,6 +15,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:cov": "turbo run test:cov",
+    "start:prod": "turbo run start:prod",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
