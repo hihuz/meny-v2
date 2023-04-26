@@ -19,4 +19,5 @@ export class Recipe {
   createdAt: Date;
   updatedAt: Date;
   user: Pick<User, 'id' | 'name'>;
+  visible: boolean;
 }

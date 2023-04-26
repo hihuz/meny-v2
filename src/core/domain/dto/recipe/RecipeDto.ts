@@ -106,6 +106,14 @@ export class RecipeDto {
   })
   public type: `${RecipeType}`;
 
+  @ApiProperty({
+    required: false,
+    example: true,
+    default: false,
+    description: 'Is the recipe visible to others.',
+  })
+  public visible: boolean;
+
   @ApiProperty()
   public createdAt: string;
 
