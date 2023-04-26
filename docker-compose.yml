@@ -1,15 +1,15 @@
 version: "3.8"
 
 services:
-  meny-dev:
-    container_name: meny-dev
-    image: meny-dev
+  meny-api:
+    container_name: meny-api
+    image: meny-api
     build:
       context: ./
-      dockerfile: Dockerfile.dev
+      dockerfile: ./apps/api/Dockerfile
     depends_on:
       - meny-db
-    env_file: env/docker-compose.env
+    env_file: ./apps/api/env/docker-compose.env
     environment:
       - NODE_ENV=${NODE_ENV:-development}
     ports:
@@ -22,7 +22,7 @@ services:
     container_name: meny-db
     image: postgres:15.2-alpine
     restart: always
-    env_file: env/postgres.env
+    env_file: ./apps/api/env/postgres.env
     ports:
       - 5432:5432
     volumes:
