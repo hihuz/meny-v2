@@ -27,6 +27,15 @@ export class AuthFixture {
     return refreshToken;
   }
 
+  public generateAccessToken(
+    payload: Record<string, any>,
+    secret = ApiConfig.ACCESS_TOKEN_SECRET,
+  ) {
+    const accessToken = sign(payload, secret);
+
+    return accessToken;
+  }
+
   public static create(testingModule: TestingModule): AuthFixture {
     return new AuthFixture(testingModule);
   }
