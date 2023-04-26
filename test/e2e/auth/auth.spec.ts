@@ -54,7 +54,6 @@ describe('Auth', () => {
 
         await supertest(testServer.serverApplication.getHttpServer())
           .post(`/auth/login`)
-          .set('Content-Type', 'application/json')
           .send(payload)
           .expect(400);
       },
@@ -72,7 +71,6 @@ describe('Auth', () => {
 
         await supertest(testServer.serverApplication.getHttpServer())
           .post(`/auth/login`)
-          .set('Content-Type', 'application/json')
           .send(payload)
           .expect(401, {
             statusCode: 401,
@@ -90,7 +88,6 @@ describe('Auth', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/login`)
-        .set('Content-Type', 'application/json')
         .send(payload)
         .expect(200)
         .expect(({ body }) => {
@@ -150,7 +147,6 @@ describe('Auth', () => {
     it('should return a 400 error if refresh token is missing from payload', async () => {
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({})
         .expect(400);
     });
@@ -158,7 +154,6 @@ describe('Auth', () => {
     it('should return a 400 error if provided refresh token is malformed', async () => {
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: 'malformed-token' })
         .expect(400);
     });
@@ -175,7 +170,6 @@ describe('Auth', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: invalidToken })
         .expect(401);
     });
@@ -192,7 +186,6 @@ describe('Auth', () => {
         testServer.serverApplication.getHttpServer(),
       )
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: initialRefreshToken })
         .expect(200);
 
@@ -201,7 +194,6 @@ describe('Auth', () => {
       // Attempt to use the same refresh token again: access should be denied
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: initialRefreshToken })
         .expect(401)
         .expect({
@@ -214,7 +206,6 @@ describe('Auth', () => {
       // the second refresh token obtained by exchanging the first valid refreshToken
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: secondRefreshToken })
         .expect({
           statusCode: 401,
@@ -243,14 +234,12 @@ describe('Auth', () => {
       // Use first session refresh token to get a new accessToken / refreshToken pair
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: firstSessionRefreshToken })
         .expect(200);
 
       // Attempt to use the same refresh token again: access should be denied
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/auth/refresh`)
-        .set('Content-Type', 'application/json')
         .send({ refreshToken: firstSessionRefreshToken })
         .expect(401)
         .expect({

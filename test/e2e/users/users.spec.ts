@@ -82,7 +82,6 @@ describe('Users', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/users`)
-        .set('Content-Type', 'application/json')
         .send({
           email: 'JoHn@SmItH.CoM',
           password: 'temporary',
@@ -102,7 +101,6 @@ describe('Users', () => {
 
         await supertest(testServer.serverApplication.getHttpServer())
           .post(`/users`)
-          .set('Content-Type', 'application/json')
           .send(payload)
           .expect(400);
       },
@@ -114,7 +112,6 @@ describe('Users', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/users`)
-        .set('Content-Type', 'application/json')
         .send({
           email,
           password: 'temporary',
@@ -139,7 +136,6 @@ describe('Users', () => {
 
       await supertest(testServer.serverApplication.getHttpServer())
         .post(`/users`)
-        .set('Content-Type', 'application/json')
         .send({
           email,
           password: 'temporary',
