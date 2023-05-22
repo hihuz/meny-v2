@@ -125,7 +125,9 @@ export class RecipeDto {
 
     const dto = plainToInstance(RecipeDto, recipeRest);
 
-    dto.author = user;
+    if (user) {
+      dto.author = user;
+    }
 
     dto.createdAt = recipe.createdAt.toISOString();
     dto.updatedAt = recipe.updatedAt.toISOString();
