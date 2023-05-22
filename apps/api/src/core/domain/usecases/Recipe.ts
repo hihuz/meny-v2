@@ -6,6 +6,8 @@ import { UpsertRecipeDto } from '../dto/recipe/UpsertRecipeDto';
 import { ContextUser } from '../entities/User';
 
 export interface RecipeUseCases extends GenericUseCases<RecipeDto> {
+  get(id: number): Promise<RecipeDto>;
+
   getList(options?: ListOptions): Promise<RecipeDtoList>;
 
   create(payload: UpsertRecipeDto, user: ContextUser): Promise<RecipeDto>;

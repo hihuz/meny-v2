@@ -34,6 +34,12 @@ export class RecipeController {
     private readonly recipeUseCases: RecipeUseCases,
   ) {}
 
+  @Get(':id')
+  @ApiResponse({ status: HttpStatus.OK, type: RecipeDto })
+  getRecipe(@Param('id', new ParseIntPipe()) id: number): Promise<RecipeDto> {
+    return this.recipeUseCases.get(id);
+  }
+
   @Get()
   @ApiResponse({ status: HttpStatus.OK, type: RecipeDtoList })
   getRecipes(

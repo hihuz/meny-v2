@@ -6,7 +6,8 @@ import { RecipeDtoList } from '@core/domain/dto/recipe/RecipeDtoList';
 import { ContextUser } from '@core/domain/entities/User';
 import { RecipePort } from '@core/domain/ports/Recipe';
 import { RecipeUseCases } from '@core/domain/usecases/Recipe';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { CoreAssert } from '@core/common/utils/assert/CoreAssert';
 
 @Injectable()
 export class RecipeService implements RecipeUseCases {
@@ -14,6 +15,15 @@ export class RecipeService implements RecipeUseCases {
     @Inject(RecipeTokens.RecipePort)
     private readonly recipePort: RecipePort,
   ) {}
+
+  async get(id: number): Promise<RecipeDto> {
+    const recipe = CoreAssert.notEmpty(
+      await this.recipePort.get({ id }),
+      new NotFoundException(),
+    );
+
+    return RecipeDto.createFromRecipe(recipe);
+  }
 
   public async getList(options?: ListOptions): Promise<RecipeDtoList> {
     const [recipes, count] = await this.recipePort.getList(options);
