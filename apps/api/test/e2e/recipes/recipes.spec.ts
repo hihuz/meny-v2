@@ -54,6 +54,46 @@ describe('Recipes', () => {
     }
   });
 
+  describe('GET /recipes/:id', () => {
+    let recipe: Recipe;
+
+    beforeAll(async () => {
+      await clearDb();
+
+      recipe = await recipeFixture.insertOne({
+        name: 'Some recipe',
+        description: 'Yummy',
+      });
+    });
+
+    it('should return properly formatted recipe', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
+        .get(`/recipes/${recipe.id}`)
+        .expect(200)
+        .expect((response) => {
+          expect(response.body.email).toBeUndefined();
+          expect(response.body.password).toBeUndefined();
+          expect(response.body.roles).toBeUndefined();
+
+          expect(response.body).toEqual(
+            instanceToPlain(RecipeDto.createFromRecipe(recipe)),
+          );
+        });
+    });
+
+    it('should return a 404 error if recipe does not exist', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
+        .get(`/recipes/9999`)
+        .expect(404);
+    });
+
+    it('should return a 400 error if id is invalid', async () => {
+      await supertest(testServer.serverApplication.getHttpServer())
+        .get(`/recipes/abcd`)
+        .expect(400);
+    });
+  });
+
   describe('GET /recipes', () => {
     let recipes: Recipe[];
 
