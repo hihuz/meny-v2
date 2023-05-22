@@ -7,8 +7,9 @@ import {
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '../client/PrismaClient';
 import { ApiConfig } from '@infrastructure/config/Api';
-import { Recipe } from '@core/domain/entities/Recipe';
 import { ContextUser } from '@core/domain/entities/User';
+import { RecipeMapper } from '../mapper/RecipeMapper';
+import { Recipe } from '@core/domain/entities/Recipe';
 
 const DEFAULT_PAGE_SIZE = 50;
 
@@ -29,12 +30,14 @@ export class RecipeRepository implements RecipePort {
       },
     });
 
+    if (recipe) {
+      return RecipeMapper.toDomainEntity(recipe);
+    }
+
     return recipe;
   }
 
-  public async getList(
-    options?: ListOptions<Recipe>,
-  ): Promise<readonly [Recipe[], number]> {
+  public async getList(options?: ListOptions<Recipe>) {
     const commonOptionsWithDefaults = {
       take: ApiConfig.DEFAULT_PAGE_SIZE || DEFAULT_PAGE_SIZE,
       ...options,
@@ -62,7 +65,7 @@ export class RecipeRepository implements RecipePort {
       this.prisma.recipe.count(commonOptionsWithDefaults),
     ]);
 
-    return [recipes, count] as const;
+    return [RecipeMapper.toDomainEntities(recipes), count] as const;
   }
 
   public async create(options: UpsertRecipeOptions, user: ContextUser) {
@@ -70,7 +73,7 @@ export class RecipeRepository implements RecipePort {
       data: { ...options, userId: user.id },
     });
 
-    const recipe: Recipe = {
+    const recipe = {
       ...persistedRecipe,
       user: {
         id: user.id,
@@ -78,7 +81,7 @@ export class RecipeRepository implements RecipePort {
       },
     };
 
-    return recipe;
+    return RecipeMapper.toDomainEntity(recipe);
   }
 
   public async update(options: UpsertRecipeOptions, id: number) {
@@ -95,7 +98,7 @@ export class RecipeRepository implements RecipePort {
       },
     });
 
-    return recipe;
+    return RecipeMapper.toDomainEntity(recipe);
   }
 
   public async delete(id: number) {
@@ -111,6 +114,6 @@ export class RecipeRepository implements RecipePort {
       },
     });
 
-    return recipe;
+    return RecipeMapper.toDomainEntity(recipe);
   }
 }

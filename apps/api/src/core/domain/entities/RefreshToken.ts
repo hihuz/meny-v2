@@ -1,8 +1,10 @@
 export class RefreshToken {
-  id: number;
-  userId: number;
-  jti: string;
-  family: string;
-  expiresAt: Date;
-  createdAt: Date;
+  constructor(
+    public id: number,
+    public userId: number,
+    public jti: string,
+    public family: string,
+    public expiresAt: Date,
+    public createdAt: Date,
+  ) {}
 }

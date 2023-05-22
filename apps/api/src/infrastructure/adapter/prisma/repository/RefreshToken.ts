@@ -8,6 +8,7 @@ import {
 import { ListOptions } from '@core/common/persistence/ListOptions';
 import { RefreshToken } from '@core/domain/entities/RefreshToken';
 import { DeleteManyOptions } from '@core/common/persistence/DeleteManyOptions';
+import { RefreshTokenMapper } from '../mapper/RefreshTokenMapper';
 
 @Injectable()
 export class RefreshTokenRepository implements RefreshTokenPort {
@@ -18,13 +19,17 @@ export class RefreshTokenRepository implements RefreshTokenPort {
       data: options,
     });
 
-    return refreshToken;
+    return RefreshTokenMapper.toDomainEntity(refreshToken);
   }
 
   async get(options: GetRefreshTokenOptions) {
     const refreshToken = await this.prisma.refreshToken.findUnique({
       where: options,
     });
+
+    if (refreshToken) {
+      return RefreshTokenMapper.toDomainEntity(refreshToken);
+    }
 
     return refreshToken;
   }
@@ -35,7 +40,7 @@ export class RefreshTokenRepository implements RefreshTokenPort {
       this.prisma.refreshToken.count(options),
     ]);
 
-    return [refreshTokens, count] as const;
+    return [RefreshTokenMapper.toDomainEntities(refreshTokens), count] as const;
   }
 
   async deleteMany(options: DeleteManyOptions<RefreshToken>) {

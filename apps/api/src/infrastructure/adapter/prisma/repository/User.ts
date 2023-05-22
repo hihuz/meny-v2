@@ -5,6 +5,7 @@ import {
   GetUserOptions,
   UserPort,
 } from '@core/domain/ports/User';
+import { UserMapper } from '../mapper/UserMapper';
 
 @Injectable()
 export class UserRepository implements UserPort {
@@ -15,13 +16,17 @@ export class UserRepository implements UserPort {
       data: options,
     });
 
-    return user;
+    return UserMapper.toDomainEntity(user);
   }
 
   async get(options: GetUserOptions) {
     const user = await this.prisma.user.findUnique({
       where: options,
     });
+
+    if (user) {
+      return UserMapper.toDomainEntity(user);
+    }
 
     return user;
   }
